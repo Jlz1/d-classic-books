@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">D Classic Books</string>
+
+    <!-- Book Page Strings -->
+    <string name="book_cover">Book Cover</string>
+    <string name="bookmark">Bookmark</string>
+    <string name="view_edition">VIEW EDITION</string>
+    <string name="fiction">Fiction</string>
+    <string name="non_fiction">Non-Fiction</string>
+    <string name="books_title">Books</string>
 </resources>
