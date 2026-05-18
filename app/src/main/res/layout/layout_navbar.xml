@@ -2,6 +2,7 @@
 <!-- Custom Navigation Drawer Layout -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_start"
     android:layout_width="241dp"
     android:layout_height="wrap_content"
     android:layout_gravity="start"

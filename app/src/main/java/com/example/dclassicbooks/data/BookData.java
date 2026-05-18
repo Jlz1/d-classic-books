@@ -53,35 +53,26 @@ public class BookData {
         books.add(new Book(
             "Beyond Good and Evil",
             "Friedrich Nietzsche",
-            "A daring descent into the complexities of human morality, where the boundaries of conventional truth and dogma are shattered. As it dismantles traditional philosophies, this profound masterpiece challenges the reader to embrace a radical understanding of power, freedom, and the untethered human spirit.",
+            "A comprehensive overview of Nietzsche's\nmature philosophy.",
             R.drawable.book_nf_1,
             "Non-Fiction"
         ));
 
         // book_nf_2
         books.add(new Book(
-            "Meditations",
+            "Meditation",
             "Marcus Aurelius",
-            "An intimate glimpse into the mind of a Roman Emperor, offering timeless reflections on duty, resilience, and the nature of the cosmos. These personal writings serve as a profound guide to finding inner peace and maintaining moral integrity amidst the chaos of life.",
+            "How to be great and calm like Roma Greatest Emperror\nmature philosophy.",
             R.drawable.book_nf_2,
             "Non-Fiction"
         ));
 
         // book_nf_3
         books.add(new Book(
-            "How to Be a Stoic: Ancient Wisdom for Modern Living",
-            "Massimo Pigliucci",
-            "A practical exploration of ancient philosophy applied to contemporary challenges. This insightful guide demonstrates how the principles of Stoicism can cultivate emotional resilience, virtuous character, and a profound sense of meaning in an unpredictable world.",
+            "How To Be A Stoic",
+            "Massimo Picliucci",
+            "How To Be a stoicism with a painfull method",
             R.drawable.book_nf_3,
-            "Non-Fiction"
-        ));
-
-        // book_nf_4
-        books.add(new Book(
-            "Principles for Dealing with The Changing World Order: Why Nations Succeed and Fail",
-            "Ray Dalio",
-            "A sweeping analysis of the economic and political cycles that have shaped the rise and fall of major empires throughout history. This compelling work provides a strategic framework for understanding current global shifts and navigating the uncertainties of the future.",
-            R.drawable.book_nf_4,
             "Non-Fiction"
         ));
 

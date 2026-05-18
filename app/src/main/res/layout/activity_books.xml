@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    activity_books.xml - Books Page Layout
+
+    Menampilkan halaman kategori buku dengan fitur:
+    - Tab switching antara Fiction dan Non-Fiction
+    - Horizontal scrollable RecyclerView untuk book cards
+    - Navigation drawer
+    - Hamburger menu untuk membuka drawer
+
+    Colors:
+    - Background: Primary (#0E0911)
+    - Tab Text: Text color (#EBE4D9), highlight: Tertiary (#BC8F4B)
+    - Divider: Tertiary (#BC8F4B)
+
+    Fonts:
+    - Tab Title: Cormorant Garamond (24sp)
+    - Heading: Cinzel Bold (32sp)
+
+    Components:
+    - DrawerLayout: Main layout dengan navigation drawer
+    - ConstraintLayout: Main content area
+    - TabLayout (custom): Fiction/Non-Fiction tabs
+    - RecyclerView: Horizontal scrollable book list
+    - layout_navbar.xml: Navigation drawer
+-->
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.BooksActivity">
+
+    <!-- Main Content -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/primary">
+
+        <!-- Hamburger Menu Icon -->
+        <ImageView
+            android:id="@+id/btn_open_drawer"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="16dp"
+            android:contentDescription="@string/books_title"
+            android:padding="12dp"
+            android:src="@android:drawable/ic_menu_sort_by_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/tertiary" />
+
+        <!-- Tab Container: Fiction / Non-Fiction -->
+        <LinearLayout
+            android:id="@+id/tabContainer"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="80dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- Fiction Tab -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tabFiction"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/cormorant_garamond_semibold"
+                        android:text="@string/fiction"
+                        android:textColor="@color/secondary"
+                        android:textSize="24sp" />
+
+                    <!-- Underline for active tab -->
+                    <View
+                        android:id="@+id/fictionUnderline"
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        android:layout_marginTop="2dp"
+                        android:background="@color/secondary" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Spacer -->
+            <View
+                android:layout_width="40dp"
+                android:layout_height="match_parent" />
+
+            <!-- Non-Fiction Tab -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tabNonFiction"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/cormorant_garamond_semibold"
+                        android:text="@string/non_fiction"
+                        android:textColor="@color/text"
+                        android:textSize="24sp" />
+
+                    <!-- Underline for inactive tab (hidden initially) -->
+                    <View
+                        android:id="@+id/nonFictionUnderline"
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        android:layout_marginTop="2dp"
+                        android:background="@color/secondary"
+                        android:visibility="invisible" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Books RecyclerView - Horizontal Scrollable -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvBooks"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:clipToPadding="false"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tabContainer"
+            tools:listitem="@layout/item_book" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Navigation Drawer -->
+    <include
+        android:id="@+id/drawer_start"
+        layout="@layout/layout_navbar" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

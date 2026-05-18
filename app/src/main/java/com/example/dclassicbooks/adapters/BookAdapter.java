@@ -40,6 +40,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         // Set informasi ke TextView dan ImageView
         holder.tvTitle.setText(currentBook.getTitle());
         holder.tvAuthor.setText(currentBook.getAuthor());
+        holder.tvDescription.setText(currentBook.getDescription());
         holder.ivCover.setImageResource(currentBook.getImageResource());
 
         // (Opsional) Kalau kamu mau bikin action saat bukunya diklik
@@ -59,15 +60,18 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
     // --- Inner Class: ViewHolder ---
     // Tugasnya menyambungkan variabel Java dengan ID yang ada di item_book.xml
     public static class BookViewHolder extends RecyclerView.ViewHolder {
-        ImageView ivCover;
-        TextView tvTitle, tvAuthor;
+        ImageView ivCover, ivBookmark;
+        TextView tvTitle, tvAuthor, tvDescription, tvViewEdition;
 
         public BookViewHolder(@NonNull View itemView) {
             super(itemView);
             // Sesuaikan ID ini dengan yang ada di item_book.xml kamu
             ivCover = itemView.findViewById(R.id.ivBookCover);
+            ivBookmark = itemView.findViewById(R.id.ivBookmark);
             tvTitle = itemView.findViewById(R.id.tvBookTitle);
             tvAuthor = itemView.findViewById(R.id.tvBookAuthor);
+            tvDescription = itemView.findViewById(R.id.tvBookDescription);
+            tvViewEdition = itemView.findViewById(R.id.tvViewEdition);
         }
     }
 }
