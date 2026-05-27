@@ -6,4 +6,25 @@
     </style>
 
     <style name="Theme.DClassicBooks" parent="Base.Theme.DClassicBooks" />
+
+    <style name="heading" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/cinzel_bold</item>
+        <item name="android:textSize">32sp</item>
+    </style>
+
+    <style name="subHeading_h2" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/cormorant_garamond_semibold</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="subHeading_h3" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/source_code_pro_medium</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="caption" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/source_code_pro</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
 </resources>

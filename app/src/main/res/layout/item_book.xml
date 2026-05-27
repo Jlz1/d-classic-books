@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Book Card Item Layout
+
+    Component untuk menampilkan satu buku dalam list.
+    Digunakan oleh BookAdapter untuk RecyclerView.
+
+    Design:
+    - Image: Book cover dari drawable
+    - Title: Judul buku dengan font Cinzel Bold
+    - Author: Nama penulis dengan font Cormorant Garamond
+    - Description: Deskripsi singkat
+    - Bookmark Icon: Untuk menambah ke wishlist
+
+    Colors:
+    - Background: Primary (#0E0911)
+    - Text: Text color (#EBE4D9)
+    - Border: Tertiary (#BC8F4B)
+
+    Fonts:
+    - Title: cinzel_bold (32sp)
+    - Author: cormorant_garamond_semibold (24sp)
+    - Description: source_code_pro (12sp)
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="12dp"
+        app:cardBackgroundColor="@color/primary"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp"
+        app:strokeColor="@color/tertiary"
+        app:strokeWidth="1dp">
+
+        <!-- Main Content Container -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Top Section: Book Cover + Bookmark Icon -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp">
+
+                <!-- Book Cover Image -->
+                <ImageView
+                    android:id="@+id/ivBookCover"
+                    android:layout_width="102dp"
+                    android:layout_height="154dp"
+                    android:src="@drawable/book_f_1"
+                    android:contentDescription="@string/book_cover"
+                    android:scaleType="centerCrop" />
+
+                <!-- Bookmark Icon -->
+                <ImageView
+                    android:id="@+id/ivBookmark"
+                    android:layout_width="30dp"
+                    android:layout_height="34dp"
+                    android:layout_gravity="top|end"
+                    android:contentDescription="@string/bookmark"
+                    android:src="@drawable/ic_bookmark_custom" />
+            </FrameLayout>
+
+            <!-- Bottom Section: Book Info -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Book Title -->
+                <TextView
+                    android:id="@+id/tvBookTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/cinzel_bold"
+                    android:maxLines="2"
+                    android:textColor="@color/text"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <!-- Book Author -->
+                <TextView
+                    android:id="@+id/tvBookAuthor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cormorant_garamond_semibold"
+                    android:textColor="@color/tertiary"
+                    android:textSize="14sp"
+                    android:layout_marginTop="4dp" />
+
+                <!-- Description -->
+                <TextView
+                    android:id="@+id/tvBookDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/source_code_pro"
+                    android:maxLines="2"
+                    android:textColor="@color/text"
+                    android:textSize="10sp"
+                    android:layout_marginTop="8dp"
+                    android:alpha="0.7" />
+
+                <!-- View Edition Button -->
+                <TextView
+                    android:id="@+id/tvViewEdition"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/source_code_pro_medium"
+                    android:text="@string/view_edition"
+                    android:textColor="@color/tertiary"
+                    android:textSize="11sp"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</FrameLayout>
