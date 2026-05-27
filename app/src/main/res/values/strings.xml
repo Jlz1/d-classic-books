@@ -8,4 +8,30 @@
     <string name="fiction">Fiction</string>
     <string name="non_fiction">Non-Fiction</string>
     <string name="books_title">Books</string>
+
+    <!-- Start Page Strings -->
+    <string name="start_logo_desc">D Classic Books Logo</string>
+    <string name="start_title">D CLASSIC BOOKS</string>
+    <string name="start_subtitle">An elegant sanctuary for the worlds greatest classics</string>
+    <string name="get_started">GET STARTED</string>
+    <string name="log_in">LOG IN</string>
+    <string name="login_username_label">Username</string>
+    <string name="login_username_hint">username_example</string>
+    <string name="login_password_label">Password</string>
+    <string name="login_password_hint">********</string>
+    <string name="login_username_required">Username is required</string>
+    <string name="login_password_required">Password is required</string>
+    <string name="login_invalid">Invalid username or password</string>
+
+    <!-- Register Page Strings -->
+    <string name="register_fullname_label">Full Name</string>
+    <string name="register_fullname_hint">full_name_example</string>
+    <string name="register_email_label">Email</string>
+    <string name="register_email_hint">email@example.com</string>
+    <string name="register_password_label">Password</string>
+    <string name="register_password_hint">********</string>
+    <string name="register_action">GET STARTED</string>
+    <string name="register_fullname_required">Full name is required</string>
+    <string name="register_email_required">Email is required</string>
+    <string name="register_password_required">Password is required</string>
 </resources>
