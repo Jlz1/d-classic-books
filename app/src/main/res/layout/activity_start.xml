@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    activity_start.xml - Start Page Layout
+
+    Menampilkan start page dengan:
+    - Background image (background_start_page.png)
+    - Logo (ic_logo.xml)
+    - Title dan subtitle
+    - CTA buttons: Get Started & Log In
+-->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/start_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_start_page"
+    tools:context=".activities.StartActivity">
+
+    <LinearLayout
+        android:id="@+id/start_content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/start_actions"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.35">
+
+        <ImageView
+            android:id="@+id/start_logo"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:contentDescription="@string/start_logo_desc"
+            android:src="@drawable/ic_logo" />
+
+        <TextView
+            android:id="@+id/start_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/cinzel_bold"
+            android:text="@string/start_title"
+            android:textAlignment="center"
+            android:textColor="@color/text"
+            android:textSize="28sp" />
+
+        <TextView
+            android:id="@+id/start_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/cormorant_garamond_semibold"
+            android:lineSpacingExtra="4dp"
+            android:maxLines="2"
+            android:text="@string/start_subtitle"
+            android:textAlignment="center"
+            android:textColor="@color/text"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/start_actions"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="56dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_get_started"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:fontFamily="@font/source_code_pro_medium"
+            android:stateListAnimator="@animator/button_press_alpha"
+            android:text="@string/get_started"
+            android:textAllCaps="true"
+            android:textColor="@color/text"
+            android:textSize="12sp"
+            app:backgroundTint="@color/secondary"
+            app:cornerRadius="6dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/source_code_pro_medium"
+            android:stateListAnimator="@animator/button_press_alpha"
+            android:text="@string/log_in"
+            android:textAllCaps="true"
+            android:textColor="@color/text"
+            android:textSize="12sp"
+            app:backgroundTint="@android:color/transparent"
+            app:cornerRadius="0dp"
+            app:strokeColor="@color/text"
+            app:strokeWidth="1dp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
