@@ -53,7 +53,7 @@ public class BookData {
         books.add(new Book(
             "Beyond Good and Evil",
             "Friedrich Nietzsche",
-            "A comprehensive overview of Nietzsche's\nmature philosophy.",
+            "A profound and provocative exploration of morality, truth, and human nature. This philosophical masterpiece challenges conventional values, urging readers to transcend traditional binary concepts of right and wrong to embrace a deeper understanding of the human condition.",
             R.drawable.book_nf_1,
             "Non-Fiction"
         ));
@@ -62,7 +62,7 @@ public class BookData {
         books.add(new Book(
             "Meditation",
             "Marcus Aurelius",
-            "How to be great and calm like Roma Greatest Emperror\nmature philosophy.",
+                "A timeless collection of personal reflections from a revered Roman Emperor. This intimate journal offers profound insights into ancient Stoic philosophy, providing enduring guidance on how to find inner peace, maintain mental resilience, and live virtuously amidst chaos.",
             R.drawable.book_nf_2,
             "Non-Fiction"
         ));
@@ -71,7 +71,7 @@ public class BookData {
         books.add(new Book(
             "How To Be A Stoic",
             "Massimo Picliucci",
-            "How To Be a stoicism with a painfull method",
+                "An accessible and practical guide to applying ancient Stoic wisdom to modern life. Through relatable examples and clear principles, this insightful book demonstrates how to navigate everyday challenges, manage destructive emotions, and cultivate a resilient mindset.",
             R.drawable.book_nf_3,
             "Non-Fiction"
         ));
