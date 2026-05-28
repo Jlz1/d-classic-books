@@ -6,4 +6,5 @@
     <color name="text">#EBE4D9</color>
     <color name="login_hint">#B3EBE4D9</color>
     <color name="login_card">#66000000</color>
+    <color name="error">#FF6B6B</color>
 </resources>

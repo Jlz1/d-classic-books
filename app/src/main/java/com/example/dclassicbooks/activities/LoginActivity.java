@@ -2,7 +2,9 @@ package com.example.dclassicbooks.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,22 +36,26 @@ public class LoginActivity extends AppCompatActivity {
 
         EditText inputUsername = findViewById(R.id.input_username);
         EditText inputPassword = findViewById(R.id.input_password);
+        TextView errorUsername = findViewById(R.id.error_username);
+        TextView errorPassword = findViewById(R.id.error_password);
         MaterialButton btnLogin = findViewById(R.id.btn_login_submit);
 
         btnLogin.setOnClickListener(v -> {
-            inputUsername.setError(null);
-            inputPassword.setError(null);
+            errorUsername.setVisibility(View.GONE);
+            errorPassword.setVisibility(View.GONE);
 
             String username = inputUsername.getText().toString().trim();
             String password = inputPassword.getText().toString();
             boolean hasError = false;
 
             if (username.isEmpty()) {
-                inputUsername.setError(getString(R.string.login_username_required));
+                errorUsername.setText(getString(R.string.login_username_required));
+                errorUsername.setVisibility(View.VISIBLE);
                 hasError = true;
             }
             if (password.isEmpty()) {
-                inputPassword.setError(getString(R.string.login_password_required));
+                errorPassword.setText(getString(R.string.login_password_required));
+                errorPassword.setVisibility(View.VISIBLE);
                 hasError = true;
             }
             if (hasError) {
@@ -62,7 +68,8 @@ public class LoginActivity extends AppCompatActivity {
                 return;
             }
 
-            inputPassword.setError(getString(R.string.login_invalid));
+            errorPassword.setText(getString(R.string.login_invalid));
+            errorPassword.setVisibility(View.VISIBLE);
         });
     }
 }

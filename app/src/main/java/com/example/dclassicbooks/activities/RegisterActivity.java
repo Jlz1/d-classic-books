@@ -2,7 +2,9 @@ package com.example.dclassicbooks.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,12 +36,15 @@ public class RegisterActivity extends AppCompatActivity {
         EditText inputFullName = findViewById(R.id.input_full_name);
         EditText inputEmail = findViewById(R.id.input_email);
         EditText inputPassword = findViewById(R.id.input_password);
+        TextView errorFullName = findViewById(R.id.error_full_name);
+        TextView errorEmail = findViewById(R.id.error_email);
+        TextView errorPassword = findViewById(R.id.error_password);
         MaterialButton btnRegister = findViewById(R.id.btn_register_submit);
 
         btnRegister.setOnClickListener(v -> {
-            inputFullName.setError(null);
-            inputEmail.setError(null);
-            inputPassword.setError(null);
+            errorFullName.setVisibility(View.GONE);
+            errorEmail.setVisibility(View.GONE);
+            errorPassword.setVisibility(View.GONE);
 
             String fullName = inputFullName.getText().toString().trim();
             String email = inputEmail.getText().toString().trim();
@@ -47,15 +52,22 @@ public class RegisterActivity extends AppCompatActivity {
             boolean hasError = false;
 
             if (fullName.isEmpty()) {
-                inputFullName.setError(getString(R.string.register_fullname_required));
+                errorFullName.setText(getString(R.string.register_fullname_required));
+                errorFullName.setVisibility(View.VISIBLE);
                 hasError = true;
             }
             if (email.isEmpty()) {
-                inputEmail.setError(getString(R.string.register_email_required));
+                errorEmail.setText(getString(R.string.register_email_required));
+                errorEmail.setVisibility(View.VISIBLE);
+                hasError = true;
+            } else if (!email.contains("@")) {
+                errorEmail.setText(getString(R.string.register_email_invalid));
+                errorEmail.setVisibility(View.VISIBLE);
                 hasError = true;
             }
             if (password.isEmpty()) {
-                inputPassword.setError(getString(R.string.register_password_required));
+                errorPassword.setText(getString(R.string.register_password_required));
+                errorPassword.setVisibility(View.VISIBLE);
                 hasError = true;
             }
             if (hasError) {
