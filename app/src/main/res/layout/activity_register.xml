@@ -92,6 +92,17 @@
             android:background="@color/secondary" />
 
         <TextView
+            android:id="@+id/error_full_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/source_code_pro"
+            android:textColor="@color/error"
+            android:textSize="10sp"
+            android:visibility="gone"
+            tools:text="@string/register_fullname_required" />
+
+        <TextView
             android:id="@+id/label_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -123,6 +134,17 @@
             android:background="@color/secondary" />
 
         <TextView
+            android:id="@+id/error_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/source_code_pro"
+            android:textColor="@color/error"
+            android:textSize="10sp"
+            android:visibility="gone"
+            tools:text="@string/register_email_required" />
+
+        <TextView
             android:id="@+id/label_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -152,6 +174,17 @@
             android:layout_height="1dp"
             android:layout_marginTop="6dp"
             android:background="@color/secondary" />
+
+        <TextView
+            android:id="@+id/error_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/source_code_pro"
+            android:textColor="@color/error"
+            android:textSize="10sp"
+            android:visibility="gone"
+            tools:text="@string/register_password_required" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_register_submit"
