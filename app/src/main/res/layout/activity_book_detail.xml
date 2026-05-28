@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    activity_book_detail.xml - Book Detail Page Layout
+
+    Menampilkan detail buku dengan:
+    - Header (back, title, bookmark)
+    - Cover, title, author, description
+    - Form input (shipping address, phone number)
+    - CTA button
+-->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/book_detail_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary"
+    android:fillViewport="true"
+    tools:context=".activities.BookDetailActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/btn_back"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/back"
+                android:padding="4dp"
+                android:src="@drawable/ic_back_custom"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/tertiary" />
+
+            <TextView
+                android:id="@+id/book_detail_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cormorant_garamond_semibold"
+                android:text="@string/archive"
+                android:textColor="@color/text"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/btn_bookmark"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/bookmark"
+                android:padding="4dp"
+                android:src="@drawable/ic_bookmark_custom"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/tertiary" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/iv_detail_cover"
+            android:layout_width="200dp"
+            android:layout_height="280dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:contentDescription="@string/book_cover"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/book_f_1" />
+
+        <TextView
+            android:id="@+id/tv_detail_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/cinzel_bold"
+            android:textColor="@color/tertiary"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:text="HARRY POTTER AND THE DEATHLY HALLOWS" />
+
+        <TextView
+            android:id="@+id/tv_detail_author"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/cormorant_garamond_semibold"
+            android:textColor="@color/tertiary"
+            android:textSize="14sp"
+            tools:text="J. K. Rowling" />
+
+        <TextView
+            android:id="@+id/tv_detail_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:alpha="0.8"
+            android:fontFamily="@font/source_code_pro"
+            android:textColor="@color/text"
+            android:textSize="10sp"
+            tools:text="@string/sample_description" />
+
+        <TextView
+            android:id="@+id/label_shipping_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:fontFamily="@font/source_code_pro_medium"
+            android:text="@string/shipping_address_label"
+            android:textColor="@color/text"
+            android:textSize="10sp" />
+
+        <EditText
+            android:id="@+id/input_shipping_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/source_code_pro"
+            android:hint="@string/shipping_address_hint"
+            android:inputType="textPostalAddress"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/text"
+            android:textColorHint="@color/login_hint"
+            android:textSize="11sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="6dp"
+            android:background="@color/secondary" />
+
+        <TextView
+            android:id="@+id/error_shipping_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/source_code_pro"
+            android:textColor="@color/error"
+            android:textSize="10sp"
+            android:visibility="gone"
+            tools:text="@string/shipping_address_required" />
+
+        <TextView
+            android:id="@+id/label_phone_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/source_code_pro_medium"
+            android:text="@string/phone_number_label"
+            android:textColor="@color/text"
+            android:textSize="10sp" />
+
+        <EditText
+            android:id="@+id/input_phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/source_code_pro"
+            android:hint="@string/phone_number_hint"
+            android:inputType="phone"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/text"
+            android:textColorHint="@color/login_hint"
+            android:textSize="11sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="6dp"
+            android:background="@color/secondary" />
+
+        <TextView
+            android:id="@+id/error_phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/source_code_pro"
+            android:textColor="@color/error"
+            android:textSize="10sp"
+            android:visibility="gone"
+            tools:text="@string/phone_number_required" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_buy_now"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="18dp"
+            android:fontFamily="@font/source_code_pro_medium"
+            android:stateListAnimator="@animator/button_press_alpha"
+            android:text="@string/buy_now"
+            android:textAllCaps="true"
+            android:textColor="@color/text"
+            android:textSize="12sp"
+            app:backgroundTint="@color/secondary"
+            app:cornerRadius="6dp" />
+    </LinearLayout>
+</ScrollView>

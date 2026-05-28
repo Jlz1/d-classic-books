@@ -35,6 +35,10 @@
             android:name=".activities.RegisterActivity"
             android:exported="true" />
 
+        <activity
+            android:name=".activities.BookDetailActivity"
+            android:exported="true" />
+
         <!-- Books Activity -->
         <activity
             android:name=".activities.BooksActivity"
