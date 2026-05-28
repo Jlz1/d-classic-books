@@ -5,6 +5,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ScrollView;
@@ -40,13 +41,7 @@ public class BookDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_book_detail);
-
-        ScrollView detailScroll = findViewById(R.id.book_detail_root);
-        ViewCompat.setOnApplyWindowInsetsListener(detailScroll, (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.ime());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
         ImageView btnBack = findViewById(R.id.btn_back);
         ImageView btnBookmark = findViewById(R.id.btn_bookmark);
@@ -54,17 +49,30 @@ public class BookDetailActivity extends AppCompatActivity {
         TextView title = findViewById(R.id.tv_detail_title);
         TextView author = findViewById(R.id.tv_detail_author);
         TextView description = findViewById(R.id.tv_detail_description);
+        ScrollView detailScroll = findViewById(R.id.book_detail_root);
         EditText inputShippingAddress = findViewById(R.id.input_shipping_address);
         EditText inputPhoneNumber = findViewById(R.id.input_phone_number);
         TextView errorShippingAddress = findViewById(R.id.error_shipping_address);
         TextView errorPhoneNumber = findViewById(R.id.error_phone_number);
         MaterialButton btnBuyNow = findViewById(R.id.btn_buy_now);
 
+        ViewCompat.setOnApplyWindowInsetsListener(detailScroll, (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            Insets imeInsets = insets.getInsets(WindowInsetsCompat.Type.ime());
+            int imeBottom = insets.isVisible(WindowInsetsCompat.Type.ime()) ? imeInsets.bottom : 0;
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom + imeBottom);
+            if (insets.isVisible(WindowInsetsCompat.Type.ime())) {
+                scrollToFocusedField(detailScroll, inputShippingAddress, inputPhoneNumber);
+            }
+            return insets;
+        });
+
         setupPhoneNumberFormatting(inputPhoneNumber);
 
         View.OnFocusChangeListener focusListener = (v, hasFocus) -> {
             if (hasFocus) {
-                detailScroll.post(() -> detailScroll.smoothScrollTo(0, detailScroll.getHeight() / 3));
+                detailScroll.post(() -> scrollToFocusedField(detailScroll, inputShippingAddress, inputPhoneNumber));
+                detailScroll.postDelayed(() -> scrollToFocusedField(detailScroll, inputShippingAddress, inputPhoneNumber), 150);
             } else if (!inputShippingAddress.hasFocus() && !inputPhoneNumber.hasFocus()) {
                 detailScroll.post(() -> detailScroll.smoothScrollTo(0, 0));
             }
@@ -131,6 +139,21 @@ public class BookDetailActivity extends AppCompatActivity {
         title.setText(bookTitle);
         author.setText(bookAuthor);
         description.setText(bookDescription);
+    }
+
+    private void scrollToFocusedField(ScrollView scrollView, View... fields) {
+        View focused = getCurrentFocus();
+        if (focused == null) {
+            return;
+        }
+        for (View field : fields) {
+            if (field == focused) {
+                int offset = scrollView.getHeight() / 3;
+                int target = Math.max(0, field.getTop() - offset);
+                scrollView.post(() -> scrollView.smoothScrollTo(0, target));
+                break;
+            }
+        }
     }
 
     private void setupPhoneNumberFormatting(EditText inputPhoneNumber) {
