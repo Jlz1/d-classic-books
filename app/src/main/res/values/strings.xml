@@ -28,7 +28,7 @@
     <string name="shipping_address_hint">Enter your home address</string>
     <string name="shipping_address_required">Home address is required</string>
     <string name="phone_number_label">Phone Number</string>
-    <string name="phone_number_hint">+1 123 456 7890</string>
+    <string name="phone_number_hint">+62</string>
     <string name="phone_number_required">Phone number is required</string>
     <string name="buy_now">BUY NOW</string>
     <string name="sample_description">A breathtaking conclusion to a beloved epic, where the boundaries of magic and mortality are tested.</string>

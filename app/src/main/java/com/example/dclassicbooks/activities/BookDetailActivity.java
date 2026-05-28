@@ -1,9 +1,13 @@
 package com.example.dclassicbooks.activities;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -28,6 +32,8 @@ public class BookDetailActivity extends AppCompatActivity {
     public static final String EXTRA_AUTHOR = "EXTRA_AUTHOR";
     public static final String EXTRA_DESCRIPTION = "EXTRA_DESCRIPTION";
     public static final String EXTRA_IMAGE_RES = "EXTRA_IMAGE_RES";
+    private static final String PHONE_PREFIX = "+62 ";
+    private static final int PHONE_GROUP_SIZE = 4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +41,9 @@ public class BookDetailActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_book_detail);
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.book_detail_root), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+        ScrollView detailScroll = findViewById(R.id.book_detail_root);
+        ViewCompat.setOnApplyWindowInsetsListener(detailScroll, (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.ime());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
@@ -53,12 +60,25 @@ public class BookDetailActivity extends AppCompatActivity {
         TextView errorPhoneNumber = findViewById(R.id.error_phone_number);
         MaterialButton btnBuyNow = findViewById(R.id.btn_buy_now);
 
+        setupPhoneNumberFormatting(inputPhoneNumber);
+
+        View.OnFocusChangeListener focusListener = (v, hasFocus) -> {
+            if (hasFocus) {
+                detailScroll.post(() -> detailScroll.smoothScrollTo(0, detailScroll.getHeight() / 3));
+            } else if (!inputShippingAddress.hasFocus() && !inputPhoneNumber.hasFocus()) {
+                detailScroll.post(() -> detailScroll.smoothScrollTo(0, 0));
+            }
+        };
+        inputShippingAddress.setOnFocusChangeListener(focusListener);
+        inputPhoneNumber.setOnFocusChangeListener(focusListener);
+
         btnBack.setOnClickListener(v -> finish());
 
         final boolean[] isBookmarked = {false};
         btnBookmark.setOnClickListener(v -> {
             isBookmarked[0] = !isBookmarked[0];
-            int tintColor = isBookmarked[0] ? getColor(R.color.text) : getColor(R.color.tertiary);
+            int tintColor = getColor(R.color.tertiary);
+            btnBookmark.setImageResource(isBookmarked[0] ? R.drawable.ic_bookmark_filled : R.drawable.ic_bookmark_custom);
             btnBookmark.setColorFilter(tintColor);
         });
 
@@ -79,6 +99,12 @@ public class BookDetailActivity extends AppCompatActivity {
                 errorPhoneNumber.setText(getString(R.string.phone_number_required));
                 errorPhoneNumber.setVisibility(View.VISIBLE);
                 hasError = true;
+            } else {
+                if (extractDigitsAfterPrefix(phoneNumber).isEmpty()) {
+                    errorPhoneNumber.setText(getString(R.string.phone_number_required));
+                    errorPhoneNumber.setVisibility(View.VISIBLE);
+                    hasError = true;
+                }
             }
             if (hasError) {
                 return;
@@ -105,6 +131,118 @@ public class BookDetailActivity extends AppCompatActivity {
         title.setText(bookTitle);
         author.setText(bookAuthor);
         description.setText(bookDescription);
+    }
+
+    private void setupPhoneNumberFormatting(EditText inputPhoneNumber) {
+        final boolean[] isFormatting = {false};
+
+        inputPhoneNumber.setText(PHONE_PREFIX);
+        inputPhoneNumber.setSelection(PHONE_PREFIX.length());
+        inputPhoneNumber.setOnClickListener(v -> {
+            int cursor = inputPhoneNumber.getSelectionStart();
+            if (cursor < PHONE_PREFIX.length()) {
+                inputPhoneNumber.setSelection(PHONE_PREFIX.length());
+            }
+        });
+        inputPhoneNumber.setOnKeyListener((v, keyCode, event) -> {
+            if (keyCode == KeyEvent.KEYCODE_DEL && event.getAction() == KeyEvent.ACTION_DOWN) {
+                boolean hasNumbers = !extractDigitsAfterPrefix(inputPhoneNumber.getText().toString()).isEmpty();
+                if (!hasNumbers && inputPhoneNumber.getSelectionStart() <= PHONE_PREFIX.length()) {
+                    return true;
+                }
+            }
+            return false;
+        });
+
+        inputPhoneNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (isFormatting[0]) {
+                    return;
+                }
+
+                String original = s.toString();
+                int cursorPosition = inputPhoneNumber.getSelectionStart();
+                int safeCursor = Math.max(PHONE_PREFIX.length(), Math.min(cursorPosition, original.length()));
+                int digitsBeforeCursor = countDigits(original.substring(PHONE_PREFIX.length(), safeCursor));
+                String formatted = formatPhoneNumber(original);
+
+                if (!formatted.equals(original)) {
+                    isFormatting[0] = true;
+                    inputPhoneNumber.setText(formatted);
+                    String formattedNumbers = formatted.substring(PHONE_PREFIX.length());
+                    int newCursor = PHONE_PREFIX.length() + getCursorForDigits(formattedNumbers, digitsBeforeCursor);
+                    inputPhoneNumber.setSelection(Math.min(newCursor, formatted.length()));
+                    isFormatting[0] = false;
+                } else if (cursorPosition < PHONE_PREFIX.length()) {
+                    inputPhoneNumber.setSelection(PHONE_PREFIX.length());
+                }
+            }
+        });
+    }
+
+    private String formatPhoneNumber(String input) {
+        String digits = extractDigitsAfterPrefix(input);
+        StringBuilder formatted = new StringBuilder(PHONE_PREFIX);
+        if (!digits.isEmpty()) {
+            for (int i = 0; i < digits.length(); i++) {
+                if (i > 0 && i % PHONE_GROUP_SIZE == 0) {
+                    formatted.append(" ");
+                }
+                formatted.append(digits.charAt(i));
+            }
+        }
+        return formatted.toString();
+    }
+
+    private int countDigits(String input) {
+        int count = 0;
+        for (int i = 0; i < input.length(); i++) {
+            if (Character.isDigit(input.charAt(i))) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private String extractDigitsAfterPrefix(String input) {
+        if (input == null) {
+            return "";
+        }
+        String working = input;
+        if (working.startsWith(PHONE_PREFIX)) {
+            working = working.substring(PHONE_PREFIX.length());
+        } else {
+            working = working.replace("+", "");
+            if (working.startsWith("62")) {
+                working = working.substring(2);
+            }
+        }
+        return working.replaceAll("\\D", "");
+    }
+
+    private int getCursorForDigits(String input, int digitsBeforeCursor) {
+        if (digitsBeforeCursor <= 0) {
+            return 0;
+        }
+        int digitCount = 0;
+        for (int i = 0; i < input.length(); i++) {
+            if (Character.isDigit(input.charAt(i))) {
+                digitCount++;
+                if (digitCount == digitsBeforeCursor) {
+                    return i + 1;
+                }
+            }
+        }
+        return input.length();
     }
 
     private Book getDefaultBook() {
