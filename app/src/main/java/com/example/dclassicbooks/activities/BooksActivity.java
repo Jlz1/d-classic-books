@@ -190,7 +190,7 @@ public class BooksActivity extends AppCompatActivity {
         });
 
         menuStores.setOnClickListener(v -> {
-            // TODO: Implement stores activity
+            startActivity(new Intent(BooksActivity.this, StoresActivity.class));
             drawerLayout.closeDrawer(findViewById(R.id.drawer_start));
         });
 
