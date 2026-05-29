@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    item_store.xml - Store Card Item Layout
+
+    Component untuk menampilkan satu toko dalam list.
+    Digunakan oleh StoreAdapter untuk RecyclerView.
+
+    Design (mengikuti prototype):
+    - Full-width image background (store photo)
+    - Dark overlay gradient untuk readability teks
+    - Title: Judul toko dengan font Cinzel Bold (H1 style) - Color: Text (#EBE4D9)
+    - Description: Deskripsi dengan font Source Code Pro (Caption style) - Color: Tertiary (#BC8F4B)
+    - "PLAN A VISIT" button: bordered text button
+
+    Colors:
+    - Title: Text (#EBE4D9)
+    - Description: Tertiary (#BC8F4B)
+    - Button border & text: Text (#EBE4D9)
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="240dp"
+    android:layout_marginBottom="8dp">
+
+    <!-- Store Background Image (full bleed) -->
+    <ImageView
+        android:id="@+id/ivStoreImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/store_image_desc" />
+
+    <!-- Dark Gradient Overlay for text readability -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_store_overlay" />
+
+    <!-- Text Content Container (bottom-aligned) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Store Title: H1 style - Cinzel Bold, Color: Text -->
+        <TextView
+            android:id="@+id/tvStoreName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/cinzel_bold"
+            android:textColor="@color/text"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <!-- Store Description: Caption style - Source Code Pro, Color: Tertiary -->
+        <TextView
+            android:id="@+id/tvStoreDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/source_code_pro"
+            android:textColor="@color/tertiary"
+            android:textSize="12sp"
+            android:maxLines="2"
+            android:ellipsize="end" />
+
+        <!-- Plan A Visit Button -->
+        <TextView
+            android:id="@+id/tvPlanAVisit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_plan_visit_button"
+            android:fontFamily="@font/source_code_pro_medium"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:text="@string/plan_a_visit"
+            android:textColor="@color/text"
+            android:textSize="11sp" />
+
+    </LinearLayout>
+
+</FrameLayout>

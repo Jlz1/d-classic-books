@@ -92,9 +92,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // STORES - TODO: Implement stores activity
+        // STORES - Navigate to StoresActivity
         menuStores.setOnClickListener(v -> {
-            // TODO: Navigate to StoresActivity
+            startActivity(new Intent(MainActivity.this, StoresActivity.class));
             if (drawerLayout != null) {
                 drawerLayout.closeDrawer(findViewById(R.id.drawer_start));
             }

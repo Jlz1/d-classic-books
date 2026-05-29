@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">D Classic Books</string>
 
+    <!-- Stores Page Strings -->
+    <string name="stores_title">Stores</string>
+    <string name="plan_a_visit">PLAN A VISIT</string>
+    <string name="store_image_desc">Store Image</string>
+
     <!-- Book Page Strings -->
     <string name="book_cover">Book Cover</string>
     <string name="bookmark">Bookmark</string>
