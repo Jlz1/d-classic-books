@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardBackgroundColor="#0D0910"
+    app:cardCornerRadius="0dp"
+    app:cardElevation="4dp"
+    app:strokeColor="@color/secondary"
+    app:strokeWidth="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <!-- Placeholder Gambar Cover -->
+        <ImageView
+            android:id="@+id/ivBookCover"
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            android:scaleType="centerCrop"
+            android:background="@color/text"
+            android:src = "@drawable/book_nf_1" />
+
+        <!-- Placeholder Judul Buku -->
+        <TextView
+            android:id="@+id/tvBookTitle"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="serif"
+            android:letterSpacing="0.05"
+            android:lineSpacingExtra="4dp"
+            android:textAllCaps="true"
+            android:textColor="@color/text"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="BEYOND GOOD AND EVIL" />
+
+        <!-- Placeholder Penulis -->
+        <TextView
+            android:id="@+id/tvBookAuthor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="serif"
+            android:layout_gravity="bottom"
+            android:textColor="@color/tertiary"
+            android:textSize="18sp"
+            tools:text="Friedrich N." />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

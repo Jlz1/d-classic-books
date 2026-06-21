@@ -1,9 +1,11 @@
 package com.example.dclassicbooks.activities;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,8 +13,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dclassicbooks.R;
+import com.example.dclassicbooks.adapters.BookAdapter;
+import com.example.dclassicbooks.models.Book;
+
+import java.util.ArrayList;
 
 /**
  * MainActivity - Halaman utama aplikasi
@@ -47,6 +55,28 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialize drawer and setup navigation
         initializeDrawerNavigation();
+
+
+        RecyclerView rvFeaturedBooks = findViewById(R.id.rv_featured_books);
+
+        rvFeaturedBooks.setLayoutManager(new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL,false));
+
+        ArrayList<Book> featuredBooks = new ArrayList<>();
+        featuredBooks.add(new Book("Beyond Good and Evil", "Friedrich N.", "Description", R.drawable.book_nf_1, "Non-Fiction"));
+        featuredBooks.add(new Book("Harry Potter", "J. K. Rowling", "Description", R.drawable.book_f_1, "Fiction"));
+        featuredBooks.add(new Book("Percy Jackson", "Rick Riordian", "Description", R.drawable.book_f_3, "Fiction"));
+        featuredBooks.add(new Book("Project Hail Mary", "Andy Weir", "Description", R.drawable.book_f_2, "Fiction"));
+
+        BookAdapter adapter = new BookAdapter(featuredBooks, R.layout.item_card_book);
+        rvFeaturedBooks.setAdapter(adapter);
+
+        TextView tvViewAll = findViewById(R.id.tvViewAll);
+        tvViewAll.setPaintFlags(tvViewAll.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+
+        tvViewAll.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, BooksActivity.class);
+            startActivity(intent);
+        });
     }
 
     /**
