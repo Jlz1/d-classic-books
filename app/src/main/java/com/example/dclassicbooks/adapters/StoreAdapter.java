@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,31 +16,24 @@ import com.example.dclassicbooks.models.Store;
 import java.util.List;
 
 /**
- * StoreAdapter - Adapter untuk RecyclerView halaman Stores
- *
- * Menampilkan setiap toko sebagai item full-width dengan:
- * - Background image toko
- * - Dark overlay gradient
- * - Nama toko (H1 / Cinzel Bold / Color: Text)
- * - Deskripsi toko (Caption / Source Code Pro / Color: Tertiary)
- * - Tombol "PLAN A VISIT" (bordered)
- *
- * Layout item: item_store.xml
- * Model: Store.java
- * Data: StoreData.java
+ * StoreAdapter - Adapter multifungsi untuk RecyclerView dan ViewPager2 (Carousel)
  */
 public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.StoreViewHolder> {
 
     private List<Store> storeList;
+    private int layoutId; // 1. Tambahkan variabel penampung ID layout
 
-    public StoreAdapter(List<Store> storeList) {
+    // 2. Ubah Constructor untuk menerima parameter layoutId
+    public StoreAdapter(List<Store> storeList, int layoutId) {
         this.storeList = storeList;
+        this.layoutId = layoutId;
     }
 
     @NonNull
     @Override
     public StoreViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_store, parent, false);
+        // 3. Gunakan layoutId di sini, BUKAN hardcode R.layout.item_store lagi
+        View view = LayoutInflater.from(parent.getContext()).inflate(layoutId, parent, false);
         return new StoreViewHolder(view);
     }
 
@@ -49,21 +43,28 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.StoreViewHol
 
         holder.ivStoreImage.setImageResource(currentStore.getImageResource());
         holder.tvStoreName.setText(currentStore.getName());
-        holder.tvStoreDescription.setText(currentStore.getDescription());
+
+        if (currentStore.getDescription() != null) {
+            holder.tvStoreDescription.setText(currentStore.getDescription());
+        }
+
+        holder.tvPlanAVisit.setOnClickListener(v -> {
+            Toast.makeText(v.getContext(), "Kunjungi: " + currentStore.getName(), Toast.LENGTH_SHORT).show();
+        });
     }
 
     @Override
     public int getItemCount() {
-        return storeList.size();
+        return storeList == null ? 0 : storeList.size();
     }
 
-    // ViewHolder: Menghubungkan variabel Java dengan ID di item_store.xml
     public static class StoreViewHolder extends RecyclerView.ViewHolder {
         ImageView ivStoreImage;
         TextView tvStoreName, tvStoreDescription, tvPlanAVisit;
 
         public StoreViewHolder(@NonNull View itemView) {
             super(itemView);
+            // PENTING: ID komponen di bawah ini harus SAMA PERSIS di kedua file XML kamu
             ivStoreImage = itemView.findViewById(R.id.ivStoreImage);
             tvStoreName = itemView.findViewById(R.id.tvStoreName);
             tvStoreDescription = itemView.findViewById(R.id.tvStoreDescription);
