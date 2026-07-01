@@ -19,32 +19,51 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 
     // 1. Variabel untuk menyimpan list buku
     private ArrayList<Book> bookList;
+    private int layoutId;
 
-    // Constructor untuk menerima data dari Activity/Fragment
+    // ==========================================
+    // CONSTRUCTOR 1: Untuk halaman lama (Hanya 1 argumen)
+    // Jika dipanggil tanpa menyebutkan layout, otomatis pakai layout lama
+    // ==========================================
     public BookAdapter(ArrayList<Book> bookList) {
         this.bookList = bookList;
+        this.layoutId = R.layout.item_book; // Masukkan nama file XML layout lamamu di sini
+    }
+
+    // ==========================================
+    // CONSTRUCTOR 2: Untuk halaman Homepage baru (2 argumen)
+    // Menerima pesanan layout khusus dari MainActivity
+    // ==========================================
+    public BookAdapter(ArrayList<Book> bookList, int layoutId) {
+        this.bookList = bookList;
+        this.layoutId = layoutId;
     }
 
     // 2. Memanggil "cetakan" layout XML (item_book.xml)
     @NonNull
     @Override
     public BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_book, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(layoutId, parent, false);
         return new BookViewHolder(view);
     }
 
     // 3. Memasukkan (binding) data ke masing-masing elemen UI
     @Override
     public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
-        // Ambil satu buku berdasarkan posisinya di list
         Book currentBook = bookList.get(position);
 
-        // Set informasi ke TextView dan ImageView
-        holder.tvTitle.setText(currentBook.getTitle());
-        holder.tvAuthor.setText(currentBook.getAuthor());
-        holder.tvDescription.setText(currentBook.getDescription());
-        holder.ivCover.setImageResource(currentBook.getImageResource());
+        // 4. PENGECEKAN AMAN (Null Safety)
+        // Kita cek dulu apakah komponennya ada (!= null) sebelum diisi data.
 
+        // --- Komponen yang ada di KEDUA layout ---
+        if (holder.tvTitle != null) holder.tvTitle.setText(currentBook.getTitle());
+        if (holder.tvAuthor != null) holder.tvAuthor.setText(currentBook.getAuthor());
+        if (holder.ivCover != null) holder.ivCover.setImageResource(currentBook.getImageResource());
+
+        // --- Komponen yang HANYA ada di layout lama ---
+        if (holder.tvDescription != null) holder.tvDescription.setText(currentBook.getDescription());
+
+        // (Klik item tetap berfungsi untuk kedua layout)
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), BookDetailActivity.class);
             intent.putExtra(BookDetailActivity.EXTRA_TITLE, currentBook.getTitle());
