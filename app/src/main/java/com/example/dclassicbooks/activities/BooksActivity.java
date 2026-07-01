@@ -151,13 +151,17 @@ public class BooksActivity extends AppCompatActivity {
         if (category.equals("Fiction")) {
             tabFiction.setTextColor(getColor(R.color.secondary));
             tabNonFiction.setTextColor(getColor(R.color.text));
-            if (fictionUnderline != null) fictionUnderline.setVisibility(View.VISIBLE);
-            if (nonFictionUnderline != null) nonFictionUnderline.setVisibility(View.INVISIBLE);
+            if (fictionUnderline != null)
+                fictionUnderline.setVisibility(View.VISIBLE);
+            if (nonFictionUnderline != null)
+                nonFictionUnderline.setVisibility(View.INVISIBLE);
         } else {
             tabFiction.setTextColor(getColor(R.color.text));
             tabNonFiction.setTextColor(getColor(R.color.secondary));
-            if (fictionUnderline != null) fictionUnderline.setVisibility(View.INVISIBLE);
-            if (nonFictionUnderline != null) nonFictionUnderline.setVisibility(View.VISIBLE);
+            if (fictionUnderline != null)
+                fictionUnderline.setVisibility(View.INVISIBLE);
+            if (nonFictionUnderline != null)
+                nonFictionUnderline.setVisibility(View.VISIBLE);
         }
 
         // Load dan tampilkan buku dari kategori baru

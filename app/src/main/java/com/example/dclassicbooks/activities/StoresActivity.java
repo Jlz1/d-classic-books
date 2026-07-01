@@ -26,7 +26,8 @@ import java.util.List;
  *
  * Fitur:
  * - RecyclerView vertical scrollable dengan store cards
- * - Setiap card: full-width image, gradient overlay, nama, deskripsi, tombol PLAN A VISIT
+ * - Setiap card: full-width image, gradient overlay, nama, deskripsi, tombol
+ * PLAN A VISIT
  * - Navigation drawer integration
  *
  * Layout: activity_stores.xml
@@ -90,7 +91,10 @@ public class StoresActivity extends AppCompatActivity {
      */
     private void setupRecyclerView() {
         List<Store> stores = StoreData.getStores();
-        storeAdapter = new StoreAdapter(stores);
+
+        // PERBAIKAN: Tambahkan parameter R.layout.item_store di sini
+        storeAdapter = new StoreAdapter(stores, R.layout.item_store);
+
         rvStores.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         rvStores.setAdapter(storeAdapter);
     }

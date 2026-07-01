@@ -13,6 +13,7 @@ public class UserData {
 
     /**
      * Validate user credentials
+     * 
      * @param username Username to validate
      * @param password Password to validate
      * @return true if credentials are valid, false otherwise
@@ -23,6 +24,7 @@ public class UserData {
 
     /**
      * Check if user exists
+     * 
      * @param username Username to check
      * @return true if user exists, false otherwise
      */
@@ -32,10 +34,10 @@ public class UserData {
 
     /**
      * Get all users (for admin purposes)
+     * 
      * @return Map of all users
      */
     public static Map<String, String> getAllUsers() {
         return new HashMap<>(users);
     }
 }
-
