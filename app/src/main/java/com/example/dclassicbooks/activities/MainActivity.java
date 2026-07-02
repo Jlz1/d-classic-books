@@ -40,7 +40,7 @@ import java.util.List;
  * - HOME: Stay on MainActivity
  * - BOOKS: Navigate to BooksActivity
  * - STORES: Navigate to StoresActivity
- * - LOG OUT: Clear session and return to StartActivity
+ * - LOG OUT: Clear session and return to LoginActivity
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -61,6 +61,14 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialize drawer and setup navigation
         initializeDrawerNavigation();
+
+        // Greeting dinamis: ambil username dari global variable (UserData)
+        TextView tvWelcome = findViewById(R.id.tv_welcome);
+        String username = UserData.getCurrentUsername();
+        if (username == null || username.trim().isEmpty()) {
+            username = getString(R.string.default_username);
+        }
+        tvWelcome.setText(getString(R.string.home_welcome, username.toUpperCase(java.util.Locale.getDefault())));
 
         RecyclerView rvFeaturedBooks = findViewById(R.id.rv_featured_books);
 
@@ -170,10 +178,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // LOG OUT - Clear session and return to the start page
+        // LOG OUT - Clear session and return to the login page
         menuLogout.setOnClickListener(v -> {
             UserData.setCurrentUsername(null);
-            Intent intent = new Intent(MainActivity.this, StartActivity.class);
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();

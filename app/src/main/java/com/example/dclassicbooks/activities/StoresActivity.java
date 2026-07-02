@@ -132,7 +132,7 @@ public class StoresActivity extends AppCompatActivity {
 
         menuLogout.setOnClickListener(v -> {
             UserData.setCurrentUsername(null);
-            Intent intent = new Intent(StoresActivity.this, StartActivity.class);
+            Intent intent = new Intent(StoresActivity.this, LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();
