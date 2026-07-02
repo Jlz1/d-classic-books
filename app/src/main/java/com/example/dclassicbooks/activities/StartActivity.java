@@ -15,7 +15,6 @@ import com.google.android.material.button.MaterialButton;
  * StartActivity - Start page aplikasi
  *
  * Menampilkan landing page dengan CTA:
- * - Get Started: masuk ke RegisterActivity
  * - Log In: masuk ke LoginActivity
  */
 public class StartActivity extends AppCompatActivity {
@@ -33,12 +32,7 @@ public class StartActivity extends AppCompatActivity {
             return insets;
         });
 
-        MaterialButton btnGetStarted = findViewById(R.id.btn_get_started);
         MaterialButton btnLogin = findViewById(R.id.btn_login);
-
-        btnGetStarted.setOnClickListener(v -> {
-            startActivity(new Intent(StartActivity.this, RegisterActivity.class));
-        });
 
         btnLogin.setOnClickListener(v ->
             startActivity(new Intent(StartActivity.this, LoginActivity.class))
