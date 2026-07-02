@@ -57,19 +57,18 @@ public class LoginActivity extends AppCompatActivity {
                 errorPassword.setText(getString(R.string.login_password_required));
                 errorPassword.setVisibility(View.VISIBLE);
                 hasError = true;
+            } else if (!password.matches("[a-zA-Z0-9]+")) {
+                errorPassword.setText(getString(R.string.login_password_alphanumeric));
+                errorPassword.setVisibility(View.VISIBLE);
+                hasError = true;
             }
             if (hasError) {
                 return;
             }
 
-            if (UserData.validateUser(username, password)) {
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                finish();
-                return;
-            }
-
-            errorPassword.setText(getString(R.string.login_invalid));
-            errorPassword.setVisibility(View.VISIBLE);
+            UserData.setCurrentUsername(username);
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            finish();
         });
     }
 }

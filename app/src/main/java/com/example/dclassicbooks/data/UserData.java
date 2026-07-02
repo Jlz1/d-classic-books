@@ -1,43 +1,17 @@
 package com.example.dclassicbooks.data;
 
-import java.util.HashMap;
-import java.util.Map;
-
+/**
+ * Holds the username of the currently logged-in user for the app session.
+ */
 public class UserData {
-    private static final Map<String, String> users = new HashMap<>();
+    private static String currentUsername;
 
-    static {
-        // Add admin credentials
-        users.put("admin", "admin");
+    public static void setCurrentUsername(String username) {
+        currentUsername = username;
     }
 
-    /**
-     * Validate user credentials
-     * 
-     * @param username Username to validate
-     * @param password Password to validate
-     * @return true if credentials are valid, false otherwise
-     */
-    public static boolean validateUser(String username, String password) {
-        return users.containsKey(username) && users.get(username).equals(password);
-    }
-
-    /**
-     * Check if user exists
-     * 
-     * @param username Username to check
-     * @return true if user exists, false otherwise
-     */
-    public static boolean userExists(String username) {
-        return users.containsKey(username);
-    }
-
-    /**
-     * Get all users (for admin purposes)
-     * 
-     * @return Map of all users
-     */
-    public static Map<String, String> getAllUsers() {
-        return new HashMap<>(users);
+    public static String getCurrentUsername() {
+        return currentUsername;
     }
 }
+

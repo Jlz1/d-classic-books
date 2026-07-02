@@ -18,7 +18,6 @@
     <string name="start_logo_desc">D Classic Books Logo</string>
     <string name="start_title">D CLASSIC BOOKS</string>
     <string name="start_subtitle">An elegant sanctuary for the worlds greatest classics</string>
-    <string name="get_started">GET STARTED</string>
     <string name="log_in">LOG IN</string>
     <string name="login_username_label">Username</string>
     <string name="login_username_hint">username_example</string>
@@ -26,28 +25,18 @@
     <string name="login_password_hint">********</string>
     <string name="login_username_required">Username is required</string>
     <string name="login_password_required">Password is required</string>
-    <string name="login_invalid">Invalid username or password</string>
+    <string name="login_password_alphanumeric">Password must be alphanumeric</string>
     <string name="back">Back</string>
     <string name="archive">Archive</string>
     <string name="shipping_address_label">Shipping Address</string>
     <string name="shipping_address_hint">Enter your home address</string>
-    <string name="shipping_address_required">Home address is required</string>
     <string name="phone_number_label">Phone Number</string>
     <string name="phone_number_hint">+62</string>
-    <string name="phone_number_required">Phone number is required</string>
     <string name="buy_now">BUY NOW</string>
     <string name="sample_description">A breathtaking conclusion to a beloved epic, where the boundaries of magic and mortality are tested.</string>
-
-    <!-- Register Page Strings -->
-    <string name="register_fullname_label">Full Name</string>
-    <string name="register_fullname_hint">full_name_example</string>
-    <string name="register_email_label">Email</string>
-    <string name="register_email_hint">email@example.com</string>
-    <string name="register_password_label">Password</string>
-    <string name="register_password_hint">********</string>
-    <string name="register_action">GET STARTED</string>
-    <string name="register_fullname_required">Full name is required</string>
-    <string name="register_email_required">Email is required</string>
-    <string name="register_email_invalid">Email must contain @</string>
-    <string name="register_password_required">Password is required</string>
+    <string name="buy_now_fields_required">Address and phone number are required</string>
+    <string name="buy_now_phone_invalid">Phone number must be numeric</string>
+    <string name="buy_now_success_title">Order Confirmed</string>
+    <string name="buy_now_success_message">A confirmation email has been sent to your email.</string>
+    <string name="validation_error_title">Validation Error</string>
 </resources>
