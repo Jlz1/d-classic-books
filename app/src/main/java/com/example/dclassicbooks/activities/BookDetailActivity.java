@@ -21,6 +21,7 @@ import com.example.dclassicbooks.R;
 import com.example.dclassicbooks.data.BookData;
 import com.example.dclassicbooks.models.Book;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.List;
 
@@ -52,8 +53,6 @@ public class BookDetailActivity extends AppCompatActivity {
         ScrollView detailScroll = findViewById(R.id.book_detail_root);
         EditText inputShippingAddress = findViewById(R.id.input_shipping_address);
         EditText inputPhoneNumber = findViewById(R.id.input_phone_number);
-        TextView errorShippingAddress = findViewById(R.id.error_shipping_address);
-        TextView errorPhoneNumber = findViewById(R.id.error_phone_number);
         MaterialButton btnBuyNow = findViewById(R.id.btn_buy_now);
 
         ViewCompat.setOnApplyWindowInsetsListener(detailScroll, (v, insets) -> {
@@ -91,32 +90,25 @@ public class BookDetailActivity extends AppCompatActivity {
         });
 
         btnBuyNow.setOnClickListener(v -> {
-            errorShippingAddress.setVisibility(View.GONE);
-            errorPhoneNumber.setVisibility(View.GONE);
-
             String shippingAddress = inputShippingAddress.getText().toString().trim();
             String phoneNumber = inputPhoneNumber.getText().toString().trim();
-            boolean hasError = false;
+            String phoneDigits = extractDigitsAfterPrefix(phoneNumber);
 
-            if (shippingAddress.isEmpty()) {
-                errorShippingAddress.setText(getString(R.string.shipping_address_required));
-                errorShippingAddress.setVisibility(View.VISIBLE);
-                hasError = true;
-            }
-            if (phoneNumber.isEmpty()) {
-                errorPhoneNumber.setText(getString(R.string.phone_number_required));
-                errorPhoneNumber.setVisibility(View.VISIBLE);
-                hasError = true;
-            } else {
-                if (extractDigitsAfterPrefix(phoneNumber).isEmpty()) {
-                    errorPhoneNumber.setText(getString(R.string.phone_number_required));
-                    errorPhoneNumber.setVisibility(View.VISIBLE);
-                    hasError = true;
-                }
-            }
-            if (hasError) {
+            if (shippingAddress.isEmpty() || phoneDigits.isEmpty()) {
+                showValidationError(getString(R.string.buy_now_fields_required));
                 return;
             }
+            if (!phoneDigits.matches("\\d+")) {
+                showValidationError(getString(R.string.buy_now_phone_invalid));
+                return;
+            }
+
+            new MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.buy_now_success_title)
+                .setMessage(R.string.buy_now_success_message)
+                .setPositiveButton(android.R.string.ok, (dialog, which) -> finish())
+                .setOnCancelListener(dialog -> finish())
+                .show();
         });
 
         Book fallbackBook = getDefaultBook();
@@ -139,6 +131,14 @@ public class BookDetailActivity extends AppCompatActivity {
         title.setText(bookTitle);
         author.setText(bookAuthor);
         description.setText(bookDescription);
+    }
+
+    private void showValidationError(String message) {
+        new MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.validation_error_title)
+            .setMessage(message)
+            .setPositiveButton(android.R.string.ok, null)
+            .show();
     }
 
     private void scrollToFocusedField(ScrollView scrollView, View... fields) {
@@ -193,6 +193,13 @@ public class BookDetailActivity extends AppCompatActivity {
                 }
 
                 String original = s.toString();
+                String afterPrefix = original.length() > PHONE_PREFIX.length()
+                    ? original.substring(PHONE_PREFIX.length())
+                    : "";
+                if (!afterPrefix.matches("[0-9 ]*")) {
+                    showValidationError(getString(R.string.buy_now_phone_invalid));
+                }
+
                 int cursorPosition = inputPhoneNumber.getSelectionStart();
                 int safeCursor = Math.max(PHONE_PREFIX.length(), Math.min(cursorPosition, original.length()));
                 int digitsBeforeCursor = countDigits(original.substring(PHONE_PREFIX.length(), safeCursor));

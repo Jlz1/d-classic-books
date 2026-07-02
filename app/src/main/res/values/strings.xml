@@ -25,10 +25,13 @@
     <string name="archive">Archive</string>
     <string name="shipping_address_label">Shipping Address</string>
     <string name="shipping_address_hint">Enter your home address</string>
-    <string name="shipping_address_required">Home address is required</string>
     <string name="phone_number_label">Phone Number</string>
     <string name="phone_number_hint">+62</string>
-    <string name="phone_number_required">Phone number is required</string>
     <string name="buy_now">BUY NOW</string>
     <string name="sample_description">A breathtaking conclusion to a beloved epic, where the boundaries of magic and mortality are tested.</string>
+    <string name="buy_now_fields_required">Address and phone number are required</string>
+    <string name="buy_now_phone_invalid">Phone number must be numeric</string>
+    <string name="buy_now_success_title">Order Confirmed</string>
+    <string name="buy_now_success_message">A confirmation email has been sent to your email.</string>
+    <string name="validation_error_title">Validation Error</string>
 </resources>

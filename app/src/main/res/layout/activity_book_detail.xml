@@ -143,17 +143,6 @@
             android:background="@color/secondary" />
 
         <TextView
-            android:id="@+id/error_shipping_address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/source_code_pro"
-            android:textColor="@color/error"
-            android:textSize="10sp"
-            android:visibility="gone"
-            tools:text="@string/shipping_address_required" />
-
-        <TextView
             android:id="@+id/label_phone_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -184,17 +173,6 @@
             android:layout_marginTop="6dp"
             android:background="@color/secondary" />
 
-        <TextView
-            android:id="@+id/error_phone_number"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/source_code_pro"
-            android:textColor="@color/error"
-            android:textSize="10sp"
-            android:visibility="gone"
-            tools:text="@string/phone_number_required" />
-
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_buy_now"
             android:layout_width="match_parent"
@@ -206,7 +184,7 @@
             android:textAllCaps="true"
             android:textColor="@color/text"
             android:textSize="12sp"
-            app:backgroundTint="@color/secondary"
+            app:backgroundTint="@color/btn_primary_bg"
             app:cornerRadius="6dp" />
     </LinearLayout>
 </ScrollView>
