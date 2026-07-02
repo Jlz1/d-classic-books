@@ -50,7 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/cormorant_garamond_semibold"
-            android:text="HOME"
+            android:text="@string/menu_home"
             android:textColor="@color/text"
             android:textSize="24sp" />
     </LinearLayout>
@@ -80,7 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/cormorant_garamond_semibold"
-            android:text="BOOKS"
+            android:text="@string/menu_books"
             android:textColor="@color/text"
             android:textSize="24sp" />
     </LinearLayout>
@@ -110,7 +110,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/cormorant_garamond_semibold"
-            android:text="STORES"
+            android:text="@string/menu_stores"
             android:textColor="@color/text"
             android:textSize="24sp" />
     </LinearLayout>
@@ -140,7 +140,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/cormorant_garamond_semibold"
-            android:text="LOG OUT"
+            android:text="@string/menu_logout"
             android:textColor="@color/text"
             android:textSize="24sp" />
     </LinearLayout>

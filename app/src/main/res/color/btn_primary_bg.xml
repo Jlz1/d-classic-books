@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    btn_primary_bg.xml - Selector warna background tombol utama
+
+    State:
+    - Pressed : tertiary (#BC8F4B) -> berubah saat ditekan
+    - Hovered : tertiary (#BC8F4B) -> berubah saat hover
+    - Default : secondary (#5D101D)
+-->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:color="@color/secondary" android:state_hovered="true" />
-    <item android:color="@color/secondary" android:state_pressed="true" />
+    <item android:color="@color/tertiary" android:state_pressed="true" />
+    <item android:color="@color/tertiary" android:state_hovered="true" />
     <item android:color="@color/secondary" />
 </selector>
