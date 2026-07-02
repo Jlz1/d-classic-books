@@ -10,7 +10,10 @@
     android:clickable="true"
     android:focusable="true"
     android:orientation="vertical"
-    android:padding="24dp">
+    android:paddingStart="24dp"
+    android:paddingTop="48dp"
+    android:paddingEnd="24dp"
+    android:paddingBottom="24dp">
 
     <!-- Close button -->
     <ImageView
