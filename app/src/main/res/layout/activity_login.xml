@@ -155,7 +155,7 @@
             android:textAllCaps="true"
             android:textColor="@color/text"
             android:textSize="12sp"
-            app:backgroundTint="@color/btn_primary_bg"
+            app:backgroundTint="@color/secondary"
             app:cornerRadius="6dp" />
     </LinearLayout>
 

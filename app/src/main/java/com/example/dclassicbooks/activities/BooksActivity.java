@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.dclassicbooks.R;
 import com.example.dclassicbooks.adapters.BookAdapter;
 import com.example.dclassicbooks.data.BookData;
+import com.example.dclassicbooks.data.UserData;
 import com.example.dclassicbooks.models.Book;
 
 import java.util.ArrayList;
@@ -199,8 +200,11 @@ public class BooksActivity extends AppCompatActivity {
         });
 
         menuLogout.setOnClickListener(v -> {
-            // TODO: Implement logout
-            drawerLayout.closeDrawer(findViewById(R.id.drawer_start));
+            UserData.setCurrentUsername(null);
+            Intent intent = new Intent(BooksActivity.this, StartActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
         });
     }
 }

@@ -21,6 +21,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.example.dclassicbooks.R;
 import com.example.dclassicbooks.adapters.BookAdapter;
 import com.example.dclassicbooks.adapters.StoreAdapter;
+import com.example.dclassicbooks.data.UserData;
 import com.example.dclassicbooks.models.Book;
 import com.example.dclassicbooks.models.Store;
 
@@ -38,8 +39,8 @@ import java.util.List;
  * Navigation:
  * - HOME: Stay on MainActivity
  * - BOOKS: Navigate to BooksActivity
- * - STORES: Navigate to StoresActivity (TODO)
- * - LOG OUT: Logout functionality (TODO)
+ * - STORES: Navigate to StoresActivity
+ * - LOG OUT: Clear session and return to StartActivity
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -169,12 +170,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // LOG OUT - TODO: Implement logout
+        // LOG OUT - Clear session and return to the start page
         menuLogout.setOnClickListener(v -> {
-            // TODO: Implement logout functionality
-            if (drawerLayout != null) {
-                drawerLayout.closeDrawer(findViewById(R.id.drawer_start));
-            }
+            UserData.setCurrentUsername(null);
+            Intent intent = new Intent(MainActivity.this, StartActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
         });
     }
 }
