@@ -1,5 +1,6 @@
 package com.example.dclassicbooks.adapters;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dclassicbooks.R;
+import com.example.dclassicbooks.activities.BookDetailActivity;
 import com.example.dclassicbooks.models.Book;
 
 import java.util.ArrayList;
@@ -43,12 +45,14 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         holder.tvDescription.setText(currentBook.getDescription());
         holder.ivCover.setImageResource(currentBook.getImageResource());
 
-        // (Opsional) Kalau kamu mau bikin action saat bukunya diklik
-        // holder.itemView.setOnClickListener(v -> {
-        //      Intent intent = new Intent(v.getContext(), BookDetailActivity.class);
-        //      intent.putExtra("BOOK_TITLE", currentBook.getTitle());
-        //      v.getContext().startActivity(intent);
-        // });
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), BookDetailActivity.class);
+            intent.putExtra(BookDetailActivity.EXTRA_TITLE, currentBook.getTitle());
+            intent.putExtra(BookDetailActivity.EXTRA_AUTHOR, currentBook.getAuthor());
+            intent.putExtra(BookDetailActivity.EXTRA_DESCRIPTION, currentBook.getDescription());
+            intent.putExtra(BookDetailActivity.EXTRA_IMAGE_RES, currentBook.getImageResource());
+            v.getContext().startActivity(intent);
+        });
     }
 
     // 4. Menentukan seberapa banyak item yang mau ditampilkan

@@ -32,8 +32,9 @@
             android:exported="true" />
 
         <activity
-            android:name=".activities.RegisterActivity"
-            android:exported="true" />
+            android:name=".activities.BookDetailActivity"
+            android:exported="true"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
 
         <!-- Books Activity -->
         <activity
