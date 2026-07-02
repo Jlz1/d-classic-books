@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    bg_plan_visit_button.xml
+    Button background untuk "PLAN A VISIT":
+    - Fill: Primary (#0E0911)
+    - Border kiri saja: Secondary (#5D101D) lebar 3dp
+    - Tidak ada border di sisi lain
+
+    Technique: layer-list
+    - Layer 0: secondary penuh (jadi left border)
+    - Layer 1: primary dengan inset kiri 3dp (secondary hanya terlihat di kiri)
+-->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Layer 0: Secondary sebagai left border -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#5D101D" />
+        </shape>
+    </item>
+
+    <!-- Layer 1: Primary fill, inset kiri 3dp → left border secondary terlihat -->
+    <item android:left="3dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#0E0911" />
+        </shape>
+    </item>
+
+</layer-list>

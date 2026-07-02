@@ -20,37 +20,204 @@
     android:layout_height="match_parent"
     tools:context=".activities.MainActivity">
 
-    <!-- Main Content -->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/primary">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/source_code_pro"
-            android:text="Main Content Area"
-            android:textColor="@color/text"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent">
 
         <!-- Hamburger Icon to open drawer -->
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/primary"
+            android:fillViewport="true"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp">
+            <!-- Main Content -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/main"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/primary">
+
+                <ImageView
+                    android:id="@+id/iv_jumbotron"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitStart"
+                    android:src="@drawable/jumbotron_home"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_welcome"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:paddingTop="80dp"
+                    android:layout_marginEnd="24dp"
+                    android:fontFamily="@font/cinzel_bold"
+                    android:text="WELCOME, FEI!"
+                    android:textColor="@color/text"
+                    android:textSize="32sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_quote"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="48dp"
+                    android:fontFamily="@font/cormorant_garamond_semibold"
+                    android:text="“Every page is a doorway to a\nnew horizon”"
+                    android:textColor="@color/tertiary"
+                    android:textSize="24sp"
+                    android:textStyle="italic"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tv_welcome"
+                    app:layout_constraintTop_toBottomOf="@id/tv_welcome" />
+
+                <View
+                    android:id="@+id/divider"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="24dp"
+                    android:alpha="0.5"
+                    android:background="@color/text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tv_welcome"
+                    app:layout_constraintTop_toBottomOf="@id/tv_quote" />
+
+                <TextView
+                    android:id="@+id/tv_featured_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/cormorant_garamond_semibold"
+                    android:text="Featured Books"
+                    android:textColor="@color/text"
+                    android:textSize="24sp"
+                    app:layout_constraintStart_toStartOf="@id/tv_welcome"
+                    app:layout_constraintTop_toBottomOf="@id/divider" />
+
+                <TextView
+                    android:id="@+id/tvViewAll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/source_code_pro_medium"
+                    android:text="View All"
+                    android:textColor="@color/tertiary"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_featured_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_featured_title" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_featured_books"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="24dp"
+                    android:clipToPadding="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_featured_title"
+                    tools:listitem="@layout/item_card_book" />
+
+                <ImageView
+                    android:id="@+id/iv_header_bg"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="10dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/carousel_background"
+                    app:layout_constraintTop_toBottomOf="@id/rv_featured_books"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <!-- Judul Our Stores -->
+                <TextView
+                    android:id="@+id/tv_title_stores"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:fontFamily="@font/cinzel_bold"
+                    android:text="OUR STORES"
+                    android:textColor="@color/text"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rv_featured_books" />
+
+                <!-- ViewPager untuk Carousel -->
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/viewPagerStores"
+                    android:layout_width="0dp"
+                    android:layout_height="260dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_title_stores" />
+
+                <!-- Tombol Panah Kiri -->
+                <ImageButton
+                    android:id="@+id/btn_prev"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginBottom="32dp"
+                    android:background="@color/secondary"
+                    android:src="@drawable/next_btn"
+                    android:rotation="180"
+                    android:contentDescription="Previous store"
+                    android:scaleType="fitCenter"
+                    app:tint="@color/text"
+                    app:layout_constraintBottom_toBottomOf="@id/viewPagerStores"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/viewPagerStores" />
+
+                <!-- Tombol Panah Kanan -->
+                <ImageButton
+                    android:id="@+id/btn_next"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="32dp"
+                    android:background="@color/secondary"
+                    android:src="@drawable/next_btn"
+                    android:contentDescription="Next store"
+                    android:scaleType="fitCenter"
+                    app:tint="@color/text"
+                    app:layout_constraintBottom_toBottomOf="@id/viewPagerStores"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/viewPagerStores" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+
+
         <ImageView
             android:id="@+id/btn_open_drawer"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_margin="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="40dp"
             android:contentDescription="@string/books_title"
             android:padding="12dp"
             android:src="@android:drawable/ic_menu_sort_by_size"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/tertiary" />
-
+            app:tint="@color/tertiary"
+            android:background="@color/secondary"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- Navigation Drawer -->

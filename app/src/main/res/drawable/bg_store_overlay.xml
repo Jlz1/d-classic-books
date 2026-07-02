@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    bg_store_overlay.xml
+    Dark gradient overlay for store card images.
+    Provides readability for text content placed on top of images.
+    Gradient: transparent at top → semi-dark at bottom
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <gradient
+        android:angle="270"
+        android:startColor="#00000000"
+        android:centerColor="#99000000"
+        android:endColor="#DD000000"
+        android:type="linear" />
+</shape>
