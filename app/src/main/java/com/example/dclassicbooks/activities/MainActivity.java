@@ -62,6 +62,14 @@ public class MainActivity extends AppCompatActivity {
         // Initialize drawer and setup navigation
         initializeDrawerNavigation();
 
+        TextView tvWelcome = findViewById(R.id.tv_welcome);
+        String currentUsername = UserData.getCurrentUsername();
+        if (currentUsername != null && !currentUsername.trim().isEmpty()) {
+            tvWelcome.setText("HELLO, " + currentUsername.trim().toUpperCase() + "!");
+        } else {
+            tvWelcome.setText("HELLO, USER!");
+        }
+
         RecyclerView rvFeaturedBooks = findViewById(R.id.rv_featured_books);
 
         rvFeaturedBooks.setLayoutManager(new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false));
