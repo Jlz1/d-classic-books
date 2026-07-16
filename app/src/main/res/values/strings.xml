@@ -20,9 +20,9 @@
     <string name="start_subtitle">An elegant sanctuary for the worlds greatest classics</string>
     <string name="log_in">LOG IN</string>
     <string name="login_username_label">Username</string>
-    <string name="login_username_hint">username_example</string>
+    <string name="login_username_hint">Enter username</string>
     <string name="login_password_label">Password</string>
-    <string name="login_password_hint">********</string>
+    <string name="login_password_hint">Enter password</string>
     <string name="login_username_required">Username is required</string>
     <string name="login_password_required">Password is required</string>
     <string name="login_password_alphanumeric">Password must be alphanumeric</string>
